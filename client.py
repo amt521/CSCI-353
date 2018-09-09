@@ -8,15 +8,16 @@ stream_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 host = 'localhost'
  
 # define the communication port
-port = 8080
+portNum = raw_input("Enter Port Number: ")
+print("You entered: ", portNum)
  
 # Connect the socket to the port where the server is listening
-server_address = ((host, port))
+server_address = ((host, portNum))
  
 print("connecting")
  
 stream_socket.connect(server_address)
- 
+print("client1# connected to server and registered")
  
 # Send data
 message = 'message'
