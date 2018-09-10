@@ -1,5 +1,0 @@
-server started on <1.2.3.4> at port <12345>... 
-client connection from host <cs.usc.edu> port <port> 
-received register <client1> from host <cs.usc.edu> port <port>  
-terminating server… 
- 

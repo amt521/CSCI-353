@@ -1,4 +1,0 @@
-connecting to the server <1.2.3.4> at port <12345>  
-sending register message <client1> 
-received welcome 
-terminating client… 
