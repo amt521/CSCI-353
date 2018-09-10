@@ -4,6 +4,8 @@ import sys
 # Create a UDP socket
 # Notice the use of SOCK_DGRAM for UDP packets
 serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+initalInput = raw_input("").join(sys.argv[1:])
+
 
 # Assign IP address and port number to socket
 serverSocket.bind(('', 12000))
