@@ -3,6 +3,7 @@ import sys
  
 # Create a TCP/IP socket
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+initalInput = raw_input("").join(sys.argv[1:])
  
 # Define variables
 host = raw_input("#Enter Host Number: ")
