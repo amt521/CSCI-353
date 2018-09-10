@@ -12,11 +12,14 @@ while (continueInput):
         serverIP = initialInput[initialInput.find("-s") +3 : initialInput.find("-p") -2]
         portno = initialInput[initialInput.find("-p") +3 : initialInput.find("-p") +7]
         logfile = initialInput[initialInput.find("-l") +3 : initialInput.find(".txt") + 4]
+        log_file = open(logfile, "w")
         myname = initialInput[initialInput.find("-h") +3]
     
     #if client is terminated
     if ("exit" in initialInput) :
         client_socket.close()
+        log_file.write("terminating client…")
+        log_file.close()
         continueInput = False
 
     
@@ -28,7 +31,7 @@ while (continueInput):
     print("#You entered: ", message)
     
     # Connect the socket to the port where the server is listening
-    server_address = ((host, portNum))
+    server_address = ((host, portno))
     
     print("#connecting")
     
