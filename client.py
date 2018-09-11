@@ -2,10 +2,10 @@ import socket   #for sockets
 import sys  #for exit
  
 argv=sys.argv[1:len(sys.argv)]
-ipaddress = argv[1]
-portno = argv[3]
-logfile = argv[5]
-myname = argv[7]
+ipaddress = str(argv[1])
+portnum = int(argv[3])
+logfile = str(argv[5])
+myname = str(argv[7])
 
 try:
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -14,7 +14,6 @@ except socket.error:
     sys.exit()
  
 host = 'localhost'
-port = 8888
  
 continue_check = True 
 while(continue_check) :
@@ -26,7 +25,7 @@ while(continue_check) :
             sys.exit()
 
         #Set the whole string
-        s.sendto(msg, (host, port))
+        s.sendto(msg, (host, portnum))
          
         # receive data from client (data, addr)
         d = s.recvfrom(1024)

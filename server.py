@@ -2,12 +2,12 @@ import socket
 import sys
 
 argv=sys.argv[1:len(sys.argv)]
-portno = argv[1]
-logfile = argv[3]
-handnum = argv[5]
+portnum = int(argv[1])
+logfile = str(argv[3])
+handnum = int(argv[5])
 
-HOST = ''   # Symbolic name meaning all available interfaces
-PORT = 8888 # Arbitrary non-privileged port
+HOST = ''
+#portnum = 8888
  
 # Datagram (udp) socket
 try :
@@ -20,7 +20,7 @@ except socket.error, msg :
  
 # Bind socket to local host and port
 try:
-    s.bind((HOST, PORT))
+    s.bind((HOST, portnum))
 except socket.error , msg:
     print 'Bind failed. Error Code : ' + str(msg[0]) + ' Message ' + msg[1]
     sys.exit()
