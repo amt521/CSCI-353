@@ -27,7 +27,7 @@ host = ipaddress
 continue_check = True 
 while(continue_check) :
     msg = raw_input('Enter message to send: ')
-    dest = raw_input('Enter who to send to: ') 
+    #dest = raw_input('Enter who to send to: ') 
     try :
         if (msg == 'exit'):
             outputFile.write("terminating client...")
@@ -36,8 +36,10 @@ while(continue_check) :
             sys.exit()
 
         #Set the whole string & encode the string
-        s.sendto(msg, myname.encode('utf-8'), dest.encode('utf-8'), (host, portnum))
-        print(myname + " send to " + dest + " " + msg)
+        #s.sendto(msg, myname.encode('utf-8'), dest.encode('utf-8'), (host, portnum))
+        s.sendto(msg, (host, portnum))
+        #print(myname + " send to " + dest + " " + msg)
+        print(myname + " send to server " + msg)
         outputFile.write("connecting to the server " + host + " at port " + portnum)
          
         # receive data from client (data, addr)
