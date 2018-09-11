@@ -1,40 +1,45 @@
 import socket
 import sys
 
-# Create a UDP socket
-# Notice the use of SOCK_DGRAM for UDP packets
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-initalInput = raw_input("").join(sys.argv[1:])
+argv=sys.argv[1:len(sys.argv)]
+portno = argv[1]
+logfile = argv[3]
+handnum = argv[5]
 
-
-# Assign IP address and port number to socket
-server_socket.bind(('', 12000))
-
-continueCheck = True
-while (continueCheck):
-    initialInput = raw_input("").join(sys.argv[1:])
-    if (len(initialInput.len) > 4 and "client" in initialInput):
-        portno = initialInput[initialInput.find("-p") +3 : initialInput.find("-p") +7]
-        logfile = initialInput[initialInput.find("-l") +3 : initialInput.find(".txt") + 4]
-        log_file = open(logfile, "w")
-        myname = initialInput[initialInput.find("-h") +3] 
-    
-    #if client is terminated
-    if ("exit" in initialInput) :
-        server_socket.close()
-        log_file.write("terminating server…")
-        log_file.close()
-        continueInput = False
-
-    # Generate random number in the range of 0 to 10
-    #rand = random.randint(0, 10)
-
-    # Receive the client packet along with the address it is coming from
-    message, address = server_socket.recvfrom(1024)
-
-    # Capitalize the message from the client
-    message = message.upper()
-
-    # If rand is less is than 4, we consider the packet lost and do notrespond
-    #if rand < 4:
-        #server_socket.sendto(message, address)
+HOST = ''   # Symbolic name meaning all available interfaces
+PORT = 8888 # Arbitrary non-privileged port
+ 
+# Datagram (udp) socket
+try :
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    print 'Socket created'
+except socket.error, msg :
+    print 'Failed to create socket. Error Code : ' + str(msg[0]) + ' Message ' + msg[1]
+    sys.exit()
+ 
+ 
+# Bind socket to local host and port
+try:
+    s.bind((HOST, PORT))
+except socket.error , msg:
+    print 'Bind failed. Error Code : ' + str(msg[0]) + ' Message ' + msg[1]
+    sys.exit()
+     
+print 'Socket bind complete'
+ 
+#now keep talking with the client
+while 1:
+    # receive data from client (data, addr)
+    d = s.recvfrom(1024)
+    data = d[0]
+    addr = d[1]
+     
+    if not data: 
+        break
+     
+    reply = 'OK...' + data
+     
+    s.sendto(reply , addr)
+    print 'Message[' + addr[0] + ':' + str(addr[1]) + '] - ' + data.strip()
+     
+s.close()
