@@ -7,6 +7,10 @@ portnum = int(argv[3])
 logfile = str(argv[5])
 myname = str(argv[7])
 
+if (argv == None):
+    print("Input information in the form: client.py –s serverIP –p portno –l logfile –n myname")
+    sys.exit()
+
 try:
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 except socket.error:
@@ -20,8 +24,7 @@ while(continue_check) :
     msg = raw_input('Enter message to send : ')
      
     try :
-        if (msg == 'quit'):
-            print("client quit")
+        if (msg == 'exit'):
             sys.exit()
 
         #Set the whole string

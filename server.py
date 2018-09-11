@@ -7,6 +7,10 @@ argv=sys.argv[1:len(sys.argv)]
 portnum = int(argv[1])
 logfile = str(argv[3])
 handnum = argv[5]
+
+if (argv == None):
+    print("Input information in the form: server.py –p portno –l logfile -h handler")
+    sys.exit()
  
 # Datagram (udp) socket
 try :
