@@ -8,16 +8,23 @@ portnum = int(argv[1])
 logfile = str(argv[3])
 handnum = argv[5]
 
+#process logfile
+outputFile = open(logfile, "w")
+
 if (argv == None):
     print("Input information in the form: server.py –p portno –l logfile -h handler")
+    outputFile.write("terminating server...")
+    outputFile.close()
     sys.exit()
- 
+
 # Datagram (udp) socket
 try :
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     print 'Socket created'
 except socket.error, msg :
     print 'Failed to create socket. Error Code : ' + str(msg[0]) + ' Message ' + msg[1]
+    outputFile.write("terminating server...")
+    outputFile.close()
     sys.exit()
  
  
@@ -26,6 +33,8 @@ try:
     s.bind((HOST, portnum))
 except socket.error , msg:
     print 'Bind failed. Error Code : ' + str(msg[0]) + ' Message ' + msg[1]
+    outputFile.write("terminating server...")
+    outputFile.close()
     sys.exit()
      
 print 'Socket bind complete'
