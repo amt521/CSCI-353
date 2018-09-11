@@ -1,13 +1,12 @@
 import socket
 import sys
+ 
+HOST = ''   # Symbolic name meaning all available interfaces
 
 argv=sys.argv[1:len(sys.argv)]
 portnum = int(argv[1])
 logfile = str(argv[3])
-handnum = int(argv[5])
-
-HOST = ''
-#portnum = 8888
+handnum = argv[5]
  
 # Datagram (udp) socket
 try :
